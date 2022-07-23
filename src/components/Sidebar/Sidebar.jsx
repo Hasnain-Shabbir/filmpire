@@ -44,7 +44,6 @@ const Sidebar = () => {
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
-  console.log(genreIdOrCategoryName);
 
   return (
     <React.Fragment>

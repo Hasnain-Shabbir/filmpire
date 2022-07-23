@@ -12,12 +12,13 @@ import { selectGenreOrCategory } from '../../features/currentGenreOrCategory.js'
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector(
+  const { genreIdOrCategoryName, searchQuery } = useSelector(
     state => state.currentGenreOrCategory
   );
   const { data, isFetching, isError } = useGetMoviesQuery({
     genreIdOrCategoryName,
     page,
+    searchQuery,
   });
 
   // Handling the Fetching state show the Loading Spinner.
