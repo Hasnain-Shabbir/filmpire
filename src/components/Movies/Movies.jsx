@@ -7,11 +7,18 @@ import {
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { MovieList } from '../components';
-
 import { useGetMoviesQuery } from '../../services/TMDB';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory.js';
 
 const Movies = () => {
-  const { data, isFetching, isError } = useGetMoviesQuery();
+  const [page, setPage] = useState(1);
+  const { genreIdOrCategoryName } = useSelector(
+    state => state.currentGenreOrCategory
+  );
+  const { data, isFetching, isError } = useGetMoviesQuery({
+    genreIdOrCategoryName,
+    page,
+  });
 
   // Handling the Fetching state show the Loading Spinner.
   if (isFetching) {

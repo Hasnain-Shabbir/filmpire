@@ -14,6 +14,8 @@ import { useTheme } from '@mui/styles';
 import useStyles from './styles';
 import { useGetGenresQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 // const demoCategories = ['Comedy', 'Action', 'Horror', 'Animation'];
 const categories = [
@@ -35,10 +37,14 @@ const blueLogo =
   'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar = () => {
+  const { genreIdOrCategoryName } = useSelector(
+    state => state.currentGenreOrCategory
+  );
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
-  console.log(data);
+  const dispatch = useDispatch();
+  console.log(genreIdOrCategoryName);
 
   return (
     <React.Fragment>
@@ -55,9 +61,7 @@ const Sidebar = () => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to='/'>
             <ListItem
-              onClick={() => {
-                console.log('genre btn');
-              }}
+              onClick={() => dispatch(selectGenreOrCategory(value))}
               button
             >
               <ListItemIcon>
@@ -84,9 +88,7 @@ const Sidebar = () => {
           data.genres.map(({ id, name }) => (
             <Link key={id} className={classes.links} to='/'>
               <ListItem
-                onClick={() => {
-                  console.log('genre btn');
-                }}
+                onClick={() => dispatch(selectGenreOrCategory(id))}
                 button
               >
                 <ListItemIcon>
