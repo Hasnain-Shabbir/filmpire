@@ -11,7 +11,6 @@ export const fetchToken = async () => {
   try {
     const { data } = await moviesApi.get('/authentication/token/new');
     const token = data.request_token;
-    console.log('work');
 
     if (data.success) {
       localStorage.setItem('request_token', token);
@@ -36,7 +35,7 @@ export const createSessionId = async () => {
       localStorage.setItem('session_id', session_id);
       return session_id;
     } catch (error) {
-      console.log(error);
+      console.log('Sorry, your session id is not created.');
     }
   }
 };

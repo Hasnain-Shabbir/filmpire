@@ -42,7 +42,24 @@ export const tmdbApi = createApi({
         return `movie/popular?api_key=${tmdbApiKey}&page=${page}`;
       },
     }),
+
+    //* Get Movie Info
+    getMovie: builder.query({
+      query: id =>
+        `movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
+    }),
+
+    //* Get Recommended movies
+    getRecommendations: builder.query({
+      query: ({ movie_id, list }) =>
+        `/movie/${movie_id}/${list}?&api_key=${tmdbApiKey}`,
+    }),
   }),
 });
 
-export const { useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
+export const {
+  useGetMoviesQuery,
+  useGetGenresQuery,
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
+} = tmdbApi;

@@ -30,8 +30,6 @@ const NavBar = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
 
-  // console.log(user);
-
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
@@ -71,13 +69,7 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           )}
-          <IconButton
-            color='inherit'
-            sx={{ ml: 1 }}
-            onClick={() => {
-              console.log('light btn');
-            }}
-          >
+          <IconButton color='inherit' sx={{ ml: 1 }} onClick={() => {}}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -92,9 +84,7 @@ const NavBar = () => {
                 component={Link}
                 to={`/profile/${user.id}`}
                 className={classes.linkButton}
-                onClick={() => {
-                  console.log('movie btn');
-                }}
+                onClick={() => {}}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
                 <Avatar
