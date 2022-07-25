@@ -6,16 +6,5 @@ export default makeStyles(theme => ({
     borderRadius: '20px',
     objectFit: 'cover',
     boxShadow: '0.5em 1em 1em rgb(64, 64, 70)',
-    // [theme.breakpoints.down('sm')]: {
-    //   margin: '0 auto',
-    //   width: '50%',
-    //   height: '350px',
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   margin: '0 auto',
-    //   width: '100%',
-    //   height: '350px',
-    //   marginBottom: '30px',
-    // },
   },
 }));

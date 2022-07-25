@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Button, Typography, Box, CircularProgress } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -7,14 +7,14 @@ import {
   useGetMoviesByActorIdQuery,
 } from '../../services/TMDB';
 import useStyles from './styles';
-import { MovieList } from '../components';
+import { MovieList, Pagination } from '../components';
 
 const Actors = () => {
   const { id } = useParams();
   const classes = useStyles();
   const navigate = useNavigate();
   const { data, isFetching, isError } = useGetActorsDetailsQuery(id);
-  const page = 1;
+  const [page, setPage] = useState(1);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
   if (isFetching) {
@@ -90,6 +90,11 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </Grid>
   );
