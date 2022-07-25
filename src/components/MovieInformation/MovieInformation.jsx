@@ -44,6 +44,7 @@ const MovieInformation = () => {
       movie_id: id,
     });
 
+  // console.log(recommendations);
   const isMovieFavorited = true;
   const isMovieWatchlisted = true;
 
