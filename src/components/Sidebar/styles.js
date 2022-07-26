@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import { display } from '@mui/system';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   imageLink: {
     display: 'flex',
     justifyContent: 'center',
@@ -15,6 +15,6 @@ export default makeStyles(theme => ({
     textDecoration: 'none',
   },
   genreImage: {
-    filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
+    filter: theme.palette.mode === 'dark' && 'invert(1)',
   },
 }));

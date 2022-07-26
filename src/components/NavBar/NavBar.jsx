@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   AppBar,
   IconButton,
@@ -21,6 +21,7 @@ import { Sidebar, Search } from '../components';
 import { fetchToken, createSessionId, moviesApi } from '../../utils/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector, setUser } from './../../features/auth';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ const NavBar = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
+
+  const colorMode = useContext(ColorModeContext);
 
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
@@ -63,13 +66,17 @@ const NavBar = () => {
               color='inherit'
               edge='start'
               style={{ outline: 'none' }}
-              onClick={() => setmobileOpen(prevMobileOpen => !prevMobileOpen)}
+              onClick={() => setmobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
             </IconButton>
           )}
-          <IconButton color='inherit' sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton
+            color='inherit'
+            sx={{ ml: 1 }}
+            onClick={colorMode.toggleColorMode}
+          >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -105,7 +112,7 @@ const NavBar = () => {
               variant='temporary'
               anchor='right'
               open={mobileOpen}
-              onClose={() => setmobileOpen(prevMobileOpen => !prevMobileOpen)}
+              onClose={() => setmobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.drawerBackground}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}

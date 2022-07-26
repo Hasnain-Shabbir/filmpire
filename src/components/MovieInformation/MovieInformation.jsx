@@ -26,7 +26,6 @@ import axios from 'axios';
 import {
   useGetMovieQuery,
   useGetRecommendationsQuery,
-  tmdbApiKey,
   useGetListQuery,
 } from '../../services/TMDB';
 import useStyles from './styles';

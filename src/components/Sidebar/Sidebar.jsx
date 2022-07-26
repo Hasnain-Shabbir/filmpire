@@ -38,7 +38,7 @@ const blueLogo =
 
 const Sidebar = () => {
   const { genreIdOrCategoryName } = useSelector(
-    state => state.currentGenreOrCategory
+    (state) => state.currentGenreOrCategory
   );
   const theme = useTheme();
   const classes = useStyles();
@@ -67,7 +67,7 @@ const Sidebar = () => {
                 <img
                   src={genreIcons[label.toLowerCase()]}
                   alt='Genre'
-                  className={classes.genreImages}
+                  className={classes.genreImage}
                   height={30}
                 />
               </ListItemIcon>
@@ -94,7 +94,7 @@ const Sidebar = () => {
                   <img
                     src={genreIcons[name.toLowerCase()]}
                     alt='Genre'
-                    className={classes.genreImages}
+                    className={classes.genreImage}
                     height={30}
                   />
                 </ListItemIcon>
