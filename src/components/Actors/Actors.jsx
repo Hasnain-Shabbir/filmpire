@@ -6,15 +6,15 @@ import {
   useGetActorsDetailsQuery,
   useGetMoviesByActorIdQuery,
 } from '../../services/TMDB';
-import useStyles from './styles';
 import { MovieList, Pagination } from '../components';
+import useStyles from './styles';
 
 const Actors = () => {
-  const { id } = useParams();
   const classes = useStyles();
+  const { id } = useParams();
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { data, isFetching, isError } = useGetActorsDetailsQuery(id);
-  const [page, setPage] = useState(1);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
   if (isFetching) {

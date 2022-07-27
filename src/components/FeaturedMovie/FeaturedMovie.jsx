@@ -6,8 +6,6 @@ import useStyles from './styles';
 const FeaturedMovie = ({ movie }) => {
   const classes = useStyles();
 
-  console.log(movie);
-
   if (!movie) return null;
 
   return (

@@ -7,7 +7,6 @@ import {
   Grid,
   Box,
   CircularProgress,
-  useMediaQuery,
   Rating,
 } from '@mui/material';
 import {
@@ -77,6 +76,7 @@ const MovieInformation = () => {
     );
   }, [watchlistMovies, data]);
 
+  // Add movies to your favorite
   const addToFavorites = async () => {
     await axios.post(
       `https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${
@@ -92,6 +92,7 @@ const MovieInformation = () => {
     setIsMovieFavorited((prev) => !prev);
   };
 
+  // Add movies to your Watchlist
   const addToWatchlist = async () => {
     await axios.post(
       `https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${
@@ -107,6 +108,7 @@ const MovieInformation = () => {
     setIsMovieWatchlisted((prev) => !prev);
   };
 
+  // Handle the Fetching State
   if (isFetching) {
     return (
       <Box display='flex' justifyContent='center' alignItems='center'>
@@ -115,6 +117,7 @@ const MovieInformation = () => {
     );
   }
 
+  // Handle the Error State
   if (isError) {
     return (
       <Box display='flex' justifyContent='center' alignItems='center'>
